@@ -36,6 +36,7 @@ impl ToTokens for QuoteMigration {
             description,
             migration_type,
             checksum,
+            alternative_checksum,
             no_tx,
             ..
         } = &self.migration;
@@ -73,6 +74,9 @@ impl ToTokens for QuoteMigration {
                 no_tx: #no_tx,
                 checksum: ::std::borrow::Cow::Borrowed(&[
                     #(#checksum),*
+                ]),
+                alternative_checksum: ::std::borrow::Cow::Borrowed(&[
+                    #(#alternative_checksum),*
                 ]),
             }
         };

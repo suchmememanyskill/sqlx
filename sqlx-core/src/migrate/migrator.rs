@@ -172,7 +172,8 @@ impl Migrator {
 
             match applied_migrations.get(&migration.version) {
                 Some(applied_migration) => {
-                    if migration.checksum != applied_migration.checksum {
+                    if migration.checksum != applied_migration.checksum
+                        && migration.alternative_checksum != applied_migration.checksum {
                         return Err(MigrateError::VersionMismatch(migration.version));
                     }
                 }
